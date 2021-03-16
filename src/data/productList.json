@@ -1,0 +1,52 @@
+{
+  "products": [
+    {
+      "_id": "F001",
+      "image": "/images/pizza.jpg",
+      "title": "Mexican Hot Pizza",
+      "description": "Crispy thin crust pizza with mozarella. Minced beef, Salami and Chicken with a tangy tomato base. Topped off with spicy Mayo.",
+      "cuisines": ["Pizza", "Italian"],
+      "price": 469
+    },
+    {
+      "_id": "F002",
+      "image": "/images/chicken.jpg",
+      "title": "Murgi Madness",
+      "description": "Chicken cuttings, meat mixed with spices. Infused with mozarella cheese and spicy sauce",
+      "cuisines": ["Fast Food", "Chicken"],
+      "price": 360
+    },
+    {
+      "_id": "F003",
+      "image": "/images/rice-bowl.jpg",
+      "title": "Sambal Chicken Rice Bowl",
+      "description": "Chicken with mixed vegetable rice. Contains spicy tomato and mustard sauce.",
+      "cuisines": ["Rice Bowl", "Thai"],
+      "price": 418
+    },
+    {
+      "_id": "F004",
+      "image": "/images/fish-chips.jpg",
+      "title": "Fish and Chips",
+      "description": "Golden battered Dory fish, deep fried to crispy goodness. Served with chips and a garlicky tartar sauce.",
+      "cuisines": ["Fish", "Fast Food"],
+      "price": 469
+    },
+    {
+      "_id": "F005",
+      "image": "/images/burger.jpg",
+      "title": "Double Decker Burger - Beef",
+      "description": "Beef burger with two beef patties. Includes mozarella cheese and teriyaki sauce. Briche buns makes it more crispy.",
+      "cuisines": ["Burger", "Fast Food"],
+      "price": 340
+    },
+    {
+      "_id": "F006",
+      "image": "/images/korean-chicken.jpg",
+      "title": "Korean Fried Chicken",
+      "description": "Deep fried chicken that are coated with a sweet and spicy gochujang sauce.",
+      "cuisines": ["Chicken", "Fast Food"],
+      "price": 180
+    }
+  ]
+}
