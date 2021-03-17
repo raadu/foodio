@@ -8,10 +8,10 @@ import { useState } from 'react';
 import Cart from './components/Cart/Cart';
 import Filter from './components/Filter/Filter';
 import Footer from './components/Footer/Footer';
+import Header from './components/Header/Header';
 import NotFound from './components/NotFound/NotFound';
 import Products from "./components/Products/Products";
 import data from './data/productList.json';
-import Header from './Header/Header';
 
 
 function App() {
@@ -99,6 +99,8 @@ function App() {
   // Create order function
   const createOrder = (order) => {
     alert("Order created for" + order.name);
+    setCartItems([]);
+    localStorage.removeItem("cartItems");
   }
 
   return (
@@ -124,13 +126,15 @@ function App() {
               <NotFound message="No products found"/>
             }
           </div>
-          <div className="sidebar">
-            <Cart
-              cartItems={cartItems}
-              removeFromCart={removeFromCart}
-              createOrder={createOrder}
-            />
-          </div>
+          {cartItems.length!==0 && (
+            <div className="sidebar">
+              <Cart
+                cartItems={cartItems}
+                removeFromCart={removeFromCart}
+                createOrder={createOrder}
+              />
+            </div>
+          )}
         </div>
       </main>
       <Footer

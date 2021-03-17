@@ -1,3 +1,11 @@
+@import "./scss/abstract/functions";
+@import "./scss/abstract/_mixins.scss";
+@import "./scss/abstract/_variables.scss";
+@import "./scss/base/_animation.scss";
+@import "./scss/base/_base.scss";
+@import "./scss/base/_typography.scss";
+@import "./scss/base/_utilities.scss";
+
 html {
   font-size: 62.5%;
   box-sizing: border-box;
@@ -93,13 +101,23 @@ footer a {
 .product {
   display: flex;
   flex-direction: column;
-  /* justify-content: space-between; */
   height: 100%;
 }
+
 .product img {
   max-width: 30rem;
   max-height: 30rem;
   min-height: 30rem;
+}
+.product-title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  background-color: #02c8cc;
+  margin-bottom: 0.3rem;
+  text-decoration: none;
+  color: #ffffff;
 }
 
 .product-price {
