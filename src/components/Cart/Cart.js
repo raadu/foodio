@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useForm } from 'react-hook-form';
+import Fade from 'react-reveal/Fade';
 import formatCurrency from "../../utilities/util";
 
 const Cart = ({ cartItems, removeFromCart, createOrder }) => {
@@ -28,27 +29,29 @@ const Cart = ({ cartItems, removeFromCart, createOrder }) => {
       )}
       <div>
         <div className="cart">
-          <ul className="cart-items">
-            {cartItems.map((item) => (
-              <li key={item._id}>
-                <div>
-                  <img src={item.image} alt={item.title} />
-                </div>
-                <div>
-                  <div>{item.title}</div>
-                  <div className="right">
-                    {formatCurrency(item.price)} X {item.count}{" "}
-                    <button
-                      className="button"
-                      onClick={() => removeFromCart(item)}
-                    >
-                      Remove
-                    </button>
-                  </div>
-                </div>
-              </li>
-            ))}
-          </ul>
+        <Fade left cascade>
+            <ul className="cart-items">
+                {cartItems.map((item) => (
+                <li key={item._id}>
+                    <div>
+                    <img src={item.image} alt={item.title} />
+                    </div>
+                    <div>
+                    <div>{item.title}</div>
+                    <div className="right">
+                        {formatCurrency(item.price)} X {item.count}{" "}
+                        <button
+                        className="button"
+                        onClick={() => removeFromCart(item)}
+                        >
+                        Remove
+                        </button>
+                    </div>
+                    </div>
+                </li>
+                ))}
+            </ul>
+        </Fade>
         </div>
         {cartItems.length !== 0 && (
           <div>
@@ -69,50 +72,52 @@ const Cart = ({ cartItems, removeFromCart, createOrder }) => {
               </div>
             </div>
             {showCheckout && (
-              <div className="cart">
-                <form onSubmit={handleSubmit(onSubmit)}>
-                  <ul className="form-container">
-                    <li>
-                      <label>Email</label>
-                      <input
-                        name="email"
-                        type="email"
-                        required
-                        ref={register({required: true, pattern: /^\S+@\S+$/i})}
-                        // onChange={handleInput}
-                      />
-                    </li>
-                    <li>
-                      <label>Name</label>
-                      <input
-                        name="name"
-                        type="text"
-                        required
-                        ref={register({required: true, maxLength: 80})}
-                        // onChange={handleInput}
-                      />
-                    </li>
-                    <li>
-                      <label>Address</label>
-                      <input
-                        name="address"
-                        type="text"
-                        required
-                        ref={register({required: true, maxLength: 80})}
-                        // onChange={handleInput}
-                      />
-                    </li>
-                    <li>
-                      <button 
-                        className="button primary" 
-                        type="submit"
-                    >
-                        Checkout
-                      </button>
-                    </li>
-                  </ul>
-                </form>
-              </div>
+                <Fade right cascade>
+                    <div className="cart">
+                    <form onSubmit={handleSubmit(onSubmit)}>
+                    <ul className="form-container">
+                        <li>
+                        <label>Email</label>
+                        <input
+                            name="email"
+                            type="email"
+                            required
+                            ref={register({required: true, pattern: /^\S+@\S+$/i})}
+                            // onChange={handleInput}
+                        />
+                        </li>
+                        <li>
+                        <label>Name</label>
+                        <input
+                            name="name"
+                            type="text"
+                            required
+                            ref={register({required: true, maxLength: 80})}
+                            // onChange={handleInput}
+                        />
+                        </li>
+                        <li>
+                        <label>Address</label>
+                        <input
+                            name="address"
+                            type="text"
+                            required
+                            ref={register({required: true, maxLength: 80})}
+                            // onChange={handleInput}
+                        />
+                        </li>
+                        <li>
+                        <button 
+                            className="button primary" 
+                            type="submit"
+                        >
+                            Checkout
+                        </button>
+                        </li>
+                    </ul>
+                    </form>
+                </div>
+                </Fade>
             )}
           </div>
         )}
