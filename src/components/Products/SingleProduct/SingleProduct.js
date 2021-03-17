@@ -28,7 +28,7 @@ const SingleProduct = ({
                         src={imageUrl}
                         alt={product.title}
                     />
-                    <p>{product.title}</p>
+                    <div className="product-title">{product.title}</div>
                 </a>
                 <div className="product-price">
                 <div>{formatCurrency(product.price)}</div>

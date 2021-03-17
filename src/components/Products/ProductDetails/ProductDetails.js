@@ -7,14 +7,20 @@
 import { Fragment } from "react";
 import formatCurrency from "../../../utilities/util";
 
+// Dummy Food Image
+const dummyFoodImage = "/images/dummy-food.jpg";
+
 const ProductDetails = ({ selectedProduct, closeModal, addToCart }) => {
+    // Image URL
+    const imageUrl = selectedProduct.image !== "" ? selectedProduct.image : dummyFoodImage;
+
   return (
     <Fragment>
       <button className="close-modal" onClick={closeModal}>
         x
       </button>
       <div className="product-details">
-        <img src={selectedProduct.image} alt={selectedProduct.title}></img>
+        <img src={imageUrl} alt={selectedProduct.title}></img>
         <div className="product-details-description">
           <p>
             <strong>{selectedProduct.title}</strong>
