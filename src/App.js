@@ -4,10 +4,12 @@
 // Date: 16 March 2021, 9:15PM
 
 import { useState } from 'react';
+import { Provider } from 'react-redux';
 import Cart from './components/Cart/Cart';
 import Filter from './components/Filter/Filter';
 import Products from "./components/Products/Products";
 import data from './data/productList.json';
+import store from './redux/store';
 
 // Dependencies
 
@@ -88,41 +90,43 @@ function App() {
   }
 
   return (
-    <div className="grid-container">
-      <header>
-        <a href="/">Food Delivery App</a>
-      </header>
-      <main>
-        <div className="content">
-          <div className="main">
-            <Filter 
-              count={products.length}
-              size={size}
-              sort={sort}
-              filterProducts={filterProducts}
-              sortProducts={sortProducts}
-            />
-            {products.length > 0 ? 
-              <Products
-               products={products}
-               addToCart={addToCart}
-              /> :
-              <div>No products found</div>
-            }
+    <Provider store={store}>
+      <div className="grid-container">
+        <header>
+          <a href="/">Food Delivery App</a>
+        </header>
+        <main>
+          <div className="content">
+            <div className="main">
+              <Filter 
+                count={products.length}
+                size={size}
+                sort={sort}
+                filterProducts={filterProducts}
+                sortProducts={sortProducts}
+              />
+              {products.length > 0 ? 
+                <Products
+                products={products}
+                addToCart={addToCart}
+                /> :
+                <div>No products found</div>
+              }
+            </div>
+            <div className="sidebar">
+              <Cart
+                cartItems={cartItems}
+                removeFromCart={removeFromCart}
+                createOrder={createOrder}
+              />
+            </div>
           </div>
-          <div className="sidebar">
-            <Cart
-              cartItems={cartItems}
-              removeFromCart={removeFromCart}
-              createOrder={createOrder}
-            />
-          </div>
-        </div>
-      </main>
-      <footer>
-        All rights is reserved
-      </footer>
-    </div>
+        </main>
+        <footer>
+          All rights is reserved
+        </footer>
+      </div>
+    </Provider>
   );
 }
 

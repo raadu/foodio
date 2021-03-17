@@ -4,7 +4,7 @@ import { Zoom } from "react-reveal";
 import Fade from "react-reveal/Fade";
 import formatCurrency from "../../utilities/util";
 
-const Products = ({ products, addToCart }) => {
+const Products = ({ products, addToCart, fetchProducts }) => {
   // State
   const [modalOpen, setModalOpen] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState(null);
@@ -25,6 +25,9 @@ const Products = ({ products, addToCart }) => {
   return (
     <div>
       <Fade bottom cascade={true}>
+      {!products ? (
+        <div>Loading...</div>
+      ) : (
         <ul className="products">
           {products.map((product) => (
             <li key={product._id}>
@@ -49,6 +52,7 @@ const Products = ({ products, addToCart }) => {
             </li>
           ))}
         </ul>
+      )}
       </Fade>
       {modalOpen && selectedProduct && (
         <Modal isOpen={true} onRequestClose={closeModal}>
