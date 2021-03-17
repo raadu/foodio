@@ -1,4 +1,16 @@
-const Filter = ({count, size, sort, sortProducts, filterProducts}) => {
+// Title: Filter Component
+// Details: Component for filtering products.
+// Author: raadu
+// Date: 17 March 2021, 11:56PM
+
+
+const Filter = ({
+    count, 
+    cuisine, 
+    sort, 
+    sortProducts, 
+    filterProducts
+}) => {
     return (
         <div className="filter">
             <div className="filter-result">
@@ -14,7 +26,7 @@ const Filter = ({count, size, sort, sortProducts, filterProducts}) => {
             </div>
             <div className="filter-size">
                 Filter Cuisines{" "}
-                <select value={size} onChange={filterProducts}>
+                <select value={cuisine} onChange={filterProducts}>
                     <option value="" defaultValue>All</option>
                     <option value="Pizza">Pizza</option>
                     <option value="Fast Food">Fast Food</option>

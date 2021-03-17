@@ -28,11 +28,11 @@ textarea {
 
 header {
   grid-area: header;
-  background-color: #203040;
+  background-color: #02c8cc;
   color: #ffffff;
   display: flex;
   align-items: center;
-  padding: 0.5rem;
+  padding: 2rem;
 }
 
 header a {
@@ -41,7 +41,7 @@ header a {
 }
 
 a:hover {
-  color: aquamarine;
+  color: #002882;
 }
 
 main {
@@ -50,11 +50,16 @@ main {
 
 footer {
   grid-area: footer;
-  background-color: #203040;
+  background-color: #02c8cc;
   color: #ffffff;
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+footer a {
+  color: #ffffff;
+  text-decoration: none;
 }
 
 .content {
