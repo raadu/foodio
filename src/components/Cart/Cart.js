@@ -1,6 +1,22 @@
+import { useState } from "react";
+import { useForm } from 'react-hook-form';
 import formatCurrency from "../../utilities/util";
 
-const Cart = ({ cartItems, removeFromCart }) => {
+const Cart = ({ cartItems, removeFromCart, createOrder }) => {
+    // State
+    const [showCheckout, setShowCheckout] = useState(false);
+    
+    // useForm handler 
+    const { register, handleSubmit } = useForm();
+    
+    const onSubmit = (data) => {
+        const orderInfo = {
+            ...data,
+            cartItems
+        }
+        createOrder(orderInfo);
+    }
+
   return (
     <div>
       {cartItems.length === 0 ? (
@@ -16,10 +32,7 @@ const Cart = ({ cartItems, removeFromCart }) => {
             {cartItems.map((item) => (
               <li key={item._id}>
                 <div>
-                  <img
-                    src={item.image}
-                    alt={item.title}
-                  />
+                  <img src={item.image} alt={item.title} />
                 </div>
                 <div>
                   <div>{item.title}</div>
@@ -37,18 +50,71 @@ const Cart = ({ cartItems, removeFromCart }) => {
             ))}
           </ul>
         </div>
-        {cartItems.length!==0 && (
+        {cartItems.length !== 0 && (
+          <div>
             <div className="cart">
-                <div className="total">
-                    <div>
-                        Total: {" "}
-                        {formatCurrency(cartItems.reduce((a, c) => a + (c.price * c.count), 0))}
-                    </div>
-                    <button className="button primary"> 
-                        Proceed
-                    </button>
+              <div className="total">
+                <div>
+                  Total:{" "}
+                  {formatCurrency(
+                    cartItems.reduce((a, c) => a + c.price * c.count, 0)
+                  )}
                 </div>
+                <button
+                  className="button primary"
+                  onClick={() => setShowCheckout(true)}
+                >
+                  Proceed
+                </button>
+              </div>
             </div>
+            {showCheckout && (
+              <div className="cart">
+                <form onSubmit={handleSubmit(onSubmit)}>
+                  <ul className="form-container">
+                    <li>
+                      <label>Email</label>
+                      <input
+                        name="email"
+                        type="email"
+                        required
+                        ref={register({required: true, pattern: /^\S+@\S+$/i})}
+                        // onChange={handleInput}
+                      />
+                    </li>
+                    <li>
+                      <label>Name</label>
+                      <input
+                        name="name"
+                        type="text"
+                        required
+                        ref={register({required: true, maxLength: 80})}
+                        // onChange={handleInput}
+                      />
+                    </li>
+                    <li>
+                      <label>Address</label>
+                      <input
+                        name="address"
+                        type="text"
+                        required
+                        ref={register({required: true, maxLength: 80})}
+                        // onChange={handleInput}
+                      />
+                    </li>
+                    <li>
+                      <button 
+                        className="button primary" 
+                        type="submit"
+                    >
+                        Checkout
+                      </button>
+                    </li>
+                  </ul>
+                </form>
+              </div>
+            )}
+          </div>
         )}
       </div>
     </div>
