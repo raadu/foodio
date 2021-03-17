@@ -70,7 +70,7 @@ footer {
   flex: 1 20rem;
 }
 
-/* Products Component */
+/* Products Component START */
 .products {
   display: flex;
   flex-wrap: wrap;
@@ -122,3 +122,18 @@ footer {
 .button.primary {
   background-color: #f0c040;
 }
+/* Products Component END */
+
+/* Filter Component START */
+.filter {
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem;
+  margin: 1rem;
+  border-bottom: 0.1rem #c0c0c0 solid;
+}
+
+.filter div {
+  flex: 1;
+}
+/* Filter Component END */
