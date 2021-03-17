@@ -1,27 +1,36 @@
-// Title: Food Delivery App 
-// Details: Food delivery web application created with React.
+// Title: App
+// Details: Starting component for Food Delivery Application.
 // Author: raadu
 // Date: 16 March 2021, 9:15PM
 
+// Dependencies
 import { useState } from 'react';
 import Cart from './components/Cart/Cart';
 import Filter from './components/Filter/Filter';
+import Footer from './components/Footer/Footer';
+import NotFound from './components/NotFound/NotFound';
 import Products from "./components/Products/Products";
 import data from './data/productList.json';
+import Header from './Header/Header';
 
-// Dependencies
 
 function App() {
-  // State
-  const [products, setProducts] = useState(data.products);
-  const [size, setSize] = useState("");
+  // Data
+  const productDataInitial = data.products;
+  const cachedCartItems = localStorage.getItem("cartItems") ? JSON.parse(localStorage.getItem("cartItems")) : [];
+  
+  // States
+  const [products, setProducts] = useState(productDataInitial);
+  const [cuisine, setCuisine] = useState("");
   const [sort, setSort] = useState("");
-  const [cartItems, setCartItems] = useState(localStorage.getItem("cartItems") ? JSON.parse(localStorage.getItem("cartItems")) : []);
+  const [cartItems, setCartItems] = useState(cachedCartItems);
 
-  // Sort Product
+  // Sort Product Function
   const sortProducts = (event) => {
     const sortValue = event.target.value;
     setSort(sortValue);
+
+    // Product Sorting 
     const sortedProducts = products.slice().sort((a,b) => (
       sortValue === "Lowest" ?
       a.price - b.price :
@@ -31,17 +40,19 @@ function App() {
       b._id - a._id :
       b._id - a._id
     ));
+    
     setProducts(sortedProducts);
   }
 
   // Filter Product
   const filterProducts = (event) => {
     if(event.target.value === "") {
-      setSize(event.target.value);
+      setCuisine(event.target.value);
       setProducts(data.products);
     }
     else {
-        setSize(event.target.value);
+        setCuisine(event.target.value);
+        // Product Filtering
         const filteredProducts = data.products.filter((product) => 
           product.cuisines.indexOf(event.target.value) >= 0
         );
@@ -51,7 +62,7 @@ function App() {
 
   // Add To Cart Function
   const addToCart = (product) => {
-    const cartItemsCopy = [...cartItems]; //confusions
+    const cartItemsCopy = [...cartItems];
     let alreadyInCart = false;
 
     cartItemsCopy.forEach((item) => {
@@ -62,7 +73,10 @@ function App() {
     });
 
     if(!alreadyInCart) {
-      cartItemsCopy.push({...product, count: 1});
+      cartItemsCopy.push({
+        ...product, 
+        count: 1
+      });
     }
 
     setCartItems(cartItemsCopy);
@@ -84,20 +98,20 @@ function App() {
 
   // Create order function
   const createOrder = (order) => {
-    alert("Need to save order for " + order.name);
+    alert("Order created for" + order.name);
   }
 
   return (
     <div className="grid-container">
-      <header>
-        <a href="/">Food Delivery App</a>
-      </header>
+      <Header 
+        text="Foodio - Food Delivery Service"
+      />
       <main>
         <div className="content">
           <div className="main">
             <Filter 
               count={products.length}
-              size={size}
+              cuisine={cuisine}
               sort={sort}
               filterProducts={filterProducts}
               sortProducts={sortProducts}
@@ -107,7 +121,7 @@ function App() {
                products={products}
                addToCart={addToCart}
               /> :
-              <div>No products found</div>
+              <NotFound message="No products found"/>
             }
           </div>
           <div className="sidebar">
@@ -119,9 +133,10 @@ function App() {
           </div>
         </div>
       </main>
-      <footer>
-        All rights is reserved
-      </footer>
+      <Footer
+        text="raadu"
+        link="https://github.com/raadu"
+      />
     </div>
   );
 }
