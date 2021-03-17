@@ -16,7 +16,7 @@ function App() {
   const [products, setProducts] = useState(data.products);
   const [size, setSize] = useState("");
   const [sort, setSort] = useState("");
-  const [cartItems, setCartItems] = useState([]);
+  const [cartItems, setCartItems] = useState(localStorage.getItem("cartItems") ? JSON.parse(localStorage.getItem("cartItems")) : []);
 
   // Sort Product
   const sortProducts = (event) => {
@@ -66,6 +66,9 @@ function App() {
     }
 
     setCartItems(cartItemsCopy);
+
+    // Set value to LocalStorage
+    localStorage.setItem("cartItems", JSON.stringify(cartItemsCopy));
   }
 
   // Remove from cart function
@@ -74,6 +77,14 @@ function App() {
 
     const filteredProduct = cartItemsCopy.filter(x => x._id !== product._id);
     setCartItems(filteredProduct);
+
+    // Set value to LocalStorage
+    localStorage.setItem("cartItems", JSON.stringify(filteredProduct));
+  }
+
+  // Create order function
+  const createOrder = (order) => {
+    alert("Need to save order for " + order.name);
   }
 
   return (
@@ -103,6 +114,7 @@ function App() {
             <Cart
               cartItems={cartItems}
               removeFromCart={removeFromCart}
+              createOrder={createOrder}
             />
           </div>
         </div>
