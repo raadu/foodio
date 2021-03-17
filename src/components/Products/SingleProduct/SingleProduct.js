@@ -6,6 +6,7 @@
 // Dependencies
 import { Fade } from "react-reveal";
 import formatCurrency from '../../../utilities/util';
+import SingleProductStyle from "./SingleProduct.module.scss";
 
 // Dummy Food Image
 const dummyFoodImage = "/images/dummy-food.jpg";
@@ -22,19 +23,19 @@ const SingleProduct = ({
   return (
     <Fade bottom cascade>
         <li key={product._id}>
-            <div className="product">
+            <div className={SingleProductStyle.product}>
                 <a href={"#" + product._id} onClick={() => openModal(product)}>
                     <img
                         src={imageUrl}
                         alt={product.title}
                     />
-                    <div className="product-title">{product.title}</div>
+                    <div className={SingleProductStyle.productTitle}>{product.title}</div>
                 </a>
-                <div className="product-price">
+                <div className={SingleProductStyle.productPrice}>
                 <div>{formatCurrency(product.price)}</div>
                 <button 
                     onClick={() => addToCart(product)} 
-                    className="button primary"
+                    className={`${SingleProductStyle.customButton} ${SingleProductStyle.primary}`}
                 >
                     Add To Cart
                 </button>

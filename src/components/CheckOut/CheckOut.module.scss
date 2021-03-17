@@ -1,0 +1,27 @@
+@import "/src/index.scss";
+
+.form {
+  width: 100%;
+}
+
+.formContainer {
+  padding: 0;
+  list-style-type: none;
+  width: 100%;
+
+  li {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+  }
+}
+
+input {
+  padding: 1rem;
+  border: 0.1rem #c0c0c0 solid;
+}
+
+.checkOutButton {
+  @include _standardButton;
+  background-color: $color-light-green;
+}

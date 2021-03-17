@@ -1,0 +1,64 @@
+@import "/src/index.scss";
+
+.cart {
+  padding: 1rem;
+  margin: 1rem;
+  display: flex;
+}
+
+.cartHeader {
+  border-bottom: 0.1rem #c0c0c0 solid;
+}
+
+.cartItems {
+  padding: 0;
+  width: 100%;
+  list-style-type: none;
+
+  img {
+    width: 5rem;
+    height: 5rem;
+    border-radius: 5px;
+  }
+
+  li {
+    display: flex;
+
+    div {
+      padding: 0.5rem;
+
+      &:last-child {
+        flex: 1;
+      }
+    }
+  }
+}
+
+.right {
+  text-align: right;
+}
+
+.total {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+
+  div {
+    font-size: 2rem;
+  }
+}
+
+.removeButton {
+  @include _standardButton;
+  background-color: $color-light-red;
+}
+
+.proceedButton {
+  @include _standardButton;
+  background-color: $color-orange;
+}
+
+.singleCard {
+  border: 0.2px solid $color-primary;
+}

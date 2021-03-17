@@ -8,6 +8,7 @@ import { useState } from "react";
 import Modal from "react-modal";
 import { Zoom } from "react-reveal";
 import ProductDetails from "./ProductDetails/ProductDetails";
+import ProductsStyle from "./Products.module.scss";
 import SingleProduct from "./SingleProduct/SingleProduct";
 
 const Products = ({ products, addToCart }) => {
@@ -28,7 +29,7 @@ const Products = ({ products, addToCart }) => {
 
   return (
     <div>
-        <ul className="products">
+        <ul className={ProductsStyle.products}>
           {products.map((product) => (
             <SingleProduct
               product={product}
