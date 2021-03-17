@@ -1,6 +1,6 @@
 import formatCurrency from "../../utilities/util";
 
-const Products = ({products}) => {
+const Products = ({products, addToCart}) => {
     // Dummy Food Image
     const dummyFoodImage = '/images/dummy-food.jpg';
 
@@ -20,7 +20,10 @@ const Products = ({products}) => {
                                 <div>
                                     {formatCurrency(product.price)}
                                 </div>
-                                <button className="button primary">
+                                <button
+                                    onClick={() => addToCart(product)} 
+                                    className="button primary"
+                                >
                                     Add To Cart
                                 </button>
                             </div>

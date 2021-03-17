@@ -4,6 +4,7 @@
 // Date: 16 March 2021, 9:15PM
 
 import { useState } from 'react';
+import Cart from './components/Cart/Cart';
 import Filter from './components/Filter/Filter';
 import Products from "./components/Products/Products";
 import data from './data/productList.json';
@@ -15,6 +16,7 @@ function App() {
   const [products, setProducts] = useState(data.products);
   const [size, setSize] = useState("");
   const [sort, setSort] = useState("");
+  const [cartItems, setCartItems] = useState([]);
 
   // Sort Product
   const sortProducts = (event) => {
@@ -47,6 +49,33 @@ function App() {
     }
   }
 
+  // Add To Cart Function
+  const addToCart = (product) => {
+    const cartItemsCopy = [...cartItems]; //confusions
+    let alreadyInCart = false;
+
+    cartItemsCopy.forEach((item) => {
+      if(item._id === product._id) {
+        item.count++;
+        alreadyInCart = true;
+      }
+    });
+
+    if(!alreadyInCart) {
+      cartItemsCopy.push({...product, count: 1});
+    }
+
+    setCartItems(cartItemsCopy);
+  }
+
+  // Remove from cart function
+  const removeFromCart = (product) => {
+    const cartItemsCopy = [...cartItems];
+
+    const filteredProduct = cartItemsCopy.filter(x => x._id !== product._id);
+    setCartItems(filteredProduct);
+  }
+
   return (
     <div className="grid-container">
       <header>
@@ -65,12 +94,16 @@ function App() {
             {products.length > 0 ? 
               <Products
                products={products}
+               addToCart={addToCart}
               /> :
               <div>No products found</div>
             }
           </div>
           <div className="sidebar">
-            Cart Items
+            <Cart
+              cartItems={cartItems}
+              removeFromCart={removeFromCart}
+            />
           </div>
         </div>
       </main>
