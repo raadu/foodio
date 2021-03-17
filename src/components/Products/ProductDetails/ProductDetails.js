@@ -6,6 +6,7 @@
 // Dependencies
 import { Fragment } from "react";
 import formatCurrency from "../../../utilities/util";
+import ProductDetailsStyle from "./ProductDetails.module.scss";
 
 // Dummy Food Image
 const dummyFoodImage = "/images/dummy-food.jpg";
@@ -16,29 +17,34 @@ const ProductDetails = ({ selectedProduct, closeModal, addToCart }) => {
 
   return (
     <Fragment>
-      <button className="close-modal" onClick={closeModal}>
+      <button className={ProductDetailsStyle.closeModal} onClick={closeModal}>
         x
       </button>
-      <div className="product-details">
+      <div className={ProductDetailsStyle.productDetails}>
         <img src={imageUrl} alt={selectedProduct.title}></img>
-        <div className="product-details-description">
+        <div className={ProductDetailsStyle.description}>
           <p>
             <strong>{selectedProduct.title}</strong>
           </p>
           <p>{selectedProduct.description}</p>
           <p>
             Type:{" "}
-            {selectedProduct.cuisines.map((x) => (
+            {selectedProduct.cuisines.map((cuisineName) => (
               <span>
                 {" "}
-                <button className="button">{x}</button>
+                <button 
+                  className={ProductDetailsStyle.typeButton}
+                  onClick={closeModal}
+                >
+                  {cuisineName}
+                </button>
               </span>
             ))}
           </p>
-          <div className="product-price">
-            <div>{formatCurrency(selectedProduct.price)}</div>
+          <div className={ProductDetailsStyle.productPrice}>
+            <div className={ProductDetailsStyle.priceTag}>{formatCurrency(selectedProduct.price)}</div>
             <button
-              className="button primary"
+              className={`${ProductDetailsStyle.customButton} ${ProductDetailsStyle.primary}`}
               onClick={() => {
                 addToCart(selectedProduct);
                 closeModal();

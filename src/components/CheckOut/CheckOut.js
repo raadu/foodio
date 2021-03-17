@@ -6,6 +6,7 @@
 // Dependencies
 import { useForm } from "react-hook-form";
 import { Fade } from 'react-reveal';
+import CheckOutStyle from "./CheckOut.module.scss";
 
 const CheckOut = ({ cartItems, createOrder }) => {
   // useForm handler
@@ -22,9 +23,9 @@ const CheckOut = ({ cartItems, createOrder }) => {
 
   return (
     <Fade right cascade>
-      <div className="cart">
+      <div className={CheckOutStyle.cart}>
         <form onSubmit={handleSubmit(onSubmit)}>
-          <ul className="form-container">
+          <ul className={CheckOutStyle.formContainer}>
             <li>
               <label>Email</label>
               <input
@@ -53,7 +54,7 @@ const CheckOut = ({ cartItems, createOrder }) => {
               />
             </li>
             <li>
-              <button className="button primary" type="submit">
+              <button className={CheckOutStyle.checkOutButton} type="submit">
                 Checkout
               </button>
             </li>

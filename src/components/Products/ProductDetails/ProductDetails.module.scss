@@ -1,0 +1,69 @@
+@import "/src/index.scss";
+
+.productDetails {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  max-height: 96vh;
+
+  img {
+    height: 75vh;
+    max-width: 46rem;
+    margin: 0 auto;
+  }
+}
+
+.description {
+  flex: 1 1;
+  margin: 1rem;
+}
+
+.closeModal {
+  position: absolute;
+  right: 1rem;
+  top: 2.5rem;
+  z-index: 1000;
+  border-radius: 50%;
+  background-color: $color-primary;
+  color: $color-white;
+  cursor: pointer;
+
+  &:hover {
+    color: $color-black;
+    background-color: $color-orange;
+  }
+}
+
+.priceTag {
+  padding-bottom: 2rem;
+}
+
+.customButton {
+  padding: 1rem;
+  border: 0.1rem $color-grey solid;
+  border-radius: 20px;
+  color: $color-white;
+  cursor: pointer;
+
+  &:hover {
+    border: 0.1rem $color-black solid;
+    color: $color-black;
+  }
+}
+
+.primary {
+  background-color: #02c8cc;
+}
+
+.typeButton {
+  background-color: $color-light-green;
+  padding: 1rem;
+  border: 0.1rem $color-grey solid;
+  color: $color-white;
+  cursor: pointer;
+
+  &:hover {
+    border: 0.1rem $color-black solid;
+    color: $color-black;
+  }
+}

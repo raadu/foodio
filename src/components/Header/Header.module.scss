@@ -1,0 +1,19 @@
+@import "/src/index.scss";
+
+.headerArea {
+  grid-area: header;
+  background-color: $color-primary;
+  color: $color-white;
+  display: flex;
+  align-items: center;
+  padding: 2rem;
+
+  a {
+    color: $color-white;
+    text-decoration: none;
+
+    &:hover {
+      color: $color-blue;
+    }
+  }
+}

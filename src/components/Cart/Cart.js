@@ -8,6 +8,7 @@ import { useState } from "react";
 import Fade from 'react-reveal/Fade';
 import formatCurrency from "../../utilities/util";
 import CheckOut from "../CheckOut/CheckOut";
+import CartStyle from "./Cart.module.scss";
 
 const Cart = ({ 
   cartItems, 
@@ -21,28 +22,28 @@ const Cart = ({
     <div>
       {/* Cart Header */}
       {cartItems.length === 0 ? (
-        <div className="cart cart-header">Cart Is Empty</div>
+        <div className={`${CartStyle.cart} ${CartStyle.cartHeader}`}>Cart Is Empty</div>
       ) : (
-        <div className="cart cart-header">
+        <div className={`${CartStyle.cart} ${CartStyle.cartHeader}`}>
           You have {cartItems.length} items in cart{" "}
         </div>
       )}
       <div>
       {/* Cart */}
-        <div className="cart">
+        <div className={CartStyle.cart}>
           <Fade left cascade>
-              <ul className="cart-items">
+              <ul className={CartStyle.cartItems}>
                   {cartItems.map((item) => (
-                  <li key={item._id}>
+                  <li key={item._id} className={CartStyle.singleCard}>
                       <div>
                         <img src={item.image} alt={item.title} />
                       </div>
                       <div>
                       <div>{item.title}</div>
-                      <div className="right">
+                      <div className={CartStyle.right}>
                           {formatCurrency(item.price)} X {item.count}{" "}
                           <button
-                            className="button"
+                            className={CartStyle.removeButton}
                             onClick={() => removeFromCart(item)}
                           >
                             Remove
@@ -56,8 +57,8 @@ const Cart = ({
         </div>
         {cartItems.length !== 0 && (
           <div>
-            <div className="cart">
-              <div className="total">
+            <div className={CartStyle.cart}>
+              <div className={CartStyle.total}>
                 <div>
                   Total:{" "}
                   {formatCurrency(
@@ -65,7 +66,7 @@ const Cart = ({
                   )}
                 </div>
                 <button
-                  className="button primary"
+                  className={CartStyle.proceedButton}
                   onClick={() => setShowCheckout(true)}
                 >
                   Proceed

@@ -1,0 +1,68 @@
+@import "/src/index.scss";
+
+.product {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+
+  img {
+    max-width: 30rem;
+    max-height: 30rem;
+    min-height: 30rem;
+    border-radius: 12px 12px 0px 0px;
+  }
+
+  a {
+    text-decoration: none;
+  }
+
+  &:hover {
+    .productTitle {
+      background-color: $color-orange;
+    }
+  }
+}
+
+.productTitle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  background-color: $color-light-green;
+  border-radius: 0px 0px 12px 12px;
+  margin-bottom: 0.3rem;
+  color: $color-white;
+}
+
+.productPrice {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  div,
+  button {
+    text-align: center;
+    flex: 1;
+  }
+
+  div {
+    font-size: 2rem;
+  }
+}
+
+.customButton {
+  padding: 1rem;
+  border: 0.1rem $color-grey solid;
+  border-radius: 20px;
+  color: $color-white;
+  cursor: pointer;
+
+  &:hover {
+    border: 0.1rem $color-black solid;
+    color: $color-black;
+  }
+}
+
+.primary {
+  background-color: #02c8cc;
+}

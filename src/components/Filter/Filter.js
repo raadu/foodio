@@ -3,6 +3,8 @@
 // Author: raadu
 // Date: 17 March 2021, 11:56PM
 
+// Dependencies
+import FilterStyle from "./Filter.module.scss";
 
 const Filter = ({
     count, 
@@ -12,11 +14,11 @@ const Filter = ({
     filterProducts
 }) => {
     return (
-        <div className="filter">
-            <div className="filter-result">
+        <div className={FilterStyle.filter}>
+            <div>
                 {count} Products
             </div>
-            <div className="filter-sort">
+            <div>
                 Order By{" "}
                 <select value={sort} onChange={sortProducts}>
                     <option value="Latest" defaultValue>Latest</option>
@@ -24,7 +26,7 @@ const Filter = ({
                     <option value="Highest">Highest Price</option>
                 </select>
             </div>
-            <div className="filter-size">
+            <div>
                 Filter Cuisines{" "}
                 <select value={cuisine} onChange={filterProducts}>
                     <option value="" defaultValue>All</option>

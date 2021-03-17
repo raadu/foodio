@@ -1,0 +1,11 @@
+@mixin _standardButton {
+  padding: 0.5rem;
+  border: 0.1rem $color-grey solid;
+  color: $color-white;
+  cursor: pointer;
+
+  &:hover {
+    border: 0.1rem $color-black solid;
+    color: $color-black;
+  }
+}
